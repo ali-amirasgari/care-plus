@@ -20,7 +20,7 @@ export interface FormFieldProps {
   iconAlt?: string;
   disabled?: boolean
   dateFormat?: string
-  showTimeSelect?: string
+  showTimeSelect?: boolean
   children?: React.ReactNode
   renderSkeleton?: (field: any) => React.ReactNode
 }

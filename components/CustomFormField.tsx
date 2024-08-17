@@ -82,7 +82,7 @@ const RenderField = ({
           />
           <FormControl>
             <DatePicker
-              showTimeSelect={!!showTimeSelect}
+              showTimeSelect={showTimeSelect ?? false}
               selected={field.value}
               onChange={(date) => field.onChange(date)}
               timeInputLabel="Time:"

@@ -14,9 +14,10 @@ import {
 import { parseStringify } from "../utils";
 import { InputFile } from "node-appwrite/file";
 
+//  Create new user
+
 export const createUser = async (user: CreateUserParams) => {
   try {
-    // Create new user
     const newuser = await users.create(
       ID.unique(),
       user.email,
@@ -40,15 +41,22 @@ export const createUser = async (user: CreateUserParams) => {
   }
 };
 
+// Get existing user
+
 export const getUser = async (userId: string) => {
   try {
     const user = await users.get(userId);
 
     return parseStringify(user);
   } catch (error) {
-    console.error(error);
+    console.error(
+      "An error occurred while retrieving the user details:",
+      error
+    );
   }
 };
+
+// Register user
 
 export const registerPatient = async ({
   identificationDocument,
@@ -79,6 +87,27 @@ export const registerPatient = async ({
 
     return parseStringify(newPatient);
   } catch (error) {
-    console.error(error);
+    console.error("An error occurred while creating a new patient:", error);
+  }
+};
+
+// Get patient documentation
+
+export const getPatient = async (userId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", userId)]
+    );
+
+    console.log(patients);
+
+    return parseStringify(patients.documents[0]);
+  } catch (error) {
+    console.error(
+      "An error occurred while retrieving the patient details:",
+      error
+    );
   }
 };

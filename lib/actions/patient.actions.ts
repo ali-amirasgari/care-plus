@@ -33,7 +33,6 @@ export const createUser = async (user: CreateUserParams) => {
       const existingUser = await users.list([
         Query.equal("email", [user.email]),
       ]);
-      console.log(existingUser);
 
       return existingUser.users[0];
     }
@@ -100,8 +99,6 @@ export const getPatient = async (userId: string) => {
       PATIENT_COLLECTION_ID!,
       [Query.equal("userId", userId)]
     );
-
-    console.log(patients);
 
     return parseStringify(patients.documents[0]);
   } catch (error) {

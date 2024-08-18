@@ -3,10 +3,8 @@ import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import React from "react";
 
-const NewAppointment = async ({ params: {userId} } : SearchParamProps) => {
-    const patient = await getPatient(userId)
-    console.log(patient);
-    
+const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
+  const patient = await getPatient(userId);
 
   return (
     <div className="flex h-screen max-h-screen">
@@ -39,6 +37,6 @@ const NewAppointment = async ({ params: {userId} } : SearchParamProps) => {
       />
     </div>
   );
-}
+};
 
 export default NewAppointment;

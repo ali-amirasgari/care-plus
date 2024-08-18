@@ -52,9 +52,7 @@ function AppointmentForm({
 
   const onSubmit = async (
     values: z.infer<typeof AppointmentFormValidation>
-  ) => {    
-    console.log(patientId);
-    
+  ) => {
     setIsLoading(true);
 
     let status;
@@ -71,8 +69,6 @@ function AppointmentForm({
 
     try {
       if (type === "create" && patientId) {
-        console.log("salam");
-        
         const appointment = {
           userId,
           patient: patientId,
@@ -103,13 +99,17 @@ function AppointmentForm({
           },
           type,
         };
+        console.log(appointmentToUpdate);
+        
 
-        // const updatedAppointment = await updateAppointment(appointmentToUpdate);
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+        console.log(updateAppointment);
+        
 
-        // if (updatedAppointment) {
-        //   setOpen && setOpen(false);
-        //   form.reset();
-        // }
+        if (updatedAppointment) {
+          setOpen && setOpen(false);
+          form.reset();
+        }
       }
     } catch (error) {
       console.error(error);
